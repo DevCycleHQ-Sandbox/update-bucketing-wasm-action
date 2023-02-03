@@ -26,7 +26,6 @@ runs:
             exit 1
           fi
           echo "Using BUCKETING_LIB_VERSION: $BUCKETING_LIB_VERSION"
-          BUCKETING_LIB_VERSION="@${BUCKETING_LIB_VERSION}"
         else
           BUCKETING_LIB_VERSION=""
         fi          
@@ -34,6 +33,7 @@ runs:
           echo "WASM_FILE_PATH is not set"
           exit 1
         fi
+        echo "Downloading ${BUCKETING_LIB_VERSION} to ${WASM_FILE_PATH}"
         curl -o "${WASM_FILE_PATH}" "https://unpkg.com/@devcycle/bucketing-assembly-script$BUCKETING_LIB_VERSION/build/bucketing-lib.release.wasm"
     - name: Commit and push
       uses: stefanzweifel/git-auto-commit-action@v4
